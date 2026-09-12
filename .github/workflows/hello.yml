@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  hello:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,8 +16,10 @@ jobs:
       - name: Run CI test
         run: ./test.sh
 
-      - name: Show files
-        run: ls -la
+  build:
+    needs: test
+    runs-on: ubuntu-latest
 
-      - name: Say Hello
-        run: echo "Hello from GitHub Actions!"
+    steps:
+      - name: Build message
+        run: echo "Build completed successfully!"   
